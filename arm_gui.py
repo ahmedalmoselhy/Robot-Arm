@@ -18,7 +18,7 @@ class ArmGui :
         self.serialInfo = tk.StringVar()
         self.serialInfo.set("Serial Monitoring")
 
-        self.screen_x = 1920
+        self.screen_x = 1080
         self.screen_y = 1080
         self.master = master
         master.title('Arm Control Gui')
@@ -47,13 +47,13 @@ class ArmGui :
         name.place(x = self.screen_x/2-250 , y=10)
 
         start_connection_btn = tk.Button(master , text="Start Connection"  , width = 30, bg=self.startBtnBgColor , fg=self.startBtnColor , font = "Verdana 20 bold" , command = self.start_connection)
-        start_connection_btn.place(x = self.screen_x/2-500 , y=90)
+        start_connection_btn.place(x = self.screen_x/2-250 , y=90)
 
         end_connection_btn = tk.Button(master , text="End Connection " , bg=self.endBtnBgColor , fg=self.endBtnColor , width = 30 , font = "Verdana 20 bold" ,  command = self.end_connection)
-        end_connection_btn.place(x = self.screen_x/2-200 , y = 150 )
+        end_connection_btn.place(x = self.screen_x/2-250 , y = 150 )
 
         self.connection_status = tk.Label(master , textvariable = self.connectionState ,bg=self.backgroundColor , fg=self.notActivColor , font = "Verdana 20 bold" )
-        self.connection_status.place(x = self.screen_x/2 , y = 220 )
+        self.connection_status.place(x = self.screen_x/2 - 100 , y = 220 )
 
         self.current_angles = tk.Label(master , textvariable = self.currentAngles , bg=self.backgroundColor , fg=self.currentLabelColor ,  font = "Verdana 20 bold" )
         self.current_angles.place(x = self.screen_x/2 , y = self.screen_y - 400 )
@@ -87,34 +87,36 @@ class ArmGui :
 
 # Top Angle Control
         self.t_text = tk.Entry(master , font = "Verdana 20 bold" )
-        self.t_text.place( x = 1200 , y = 400  , height = 50 , width = 70 )
+        self.t_text.place( x = 400 , y = 300  , height = 50 , width = 70 )
 
         send_t_btn = tk.Button(master , text="send" , bg=self.btnBgColor , fg= self.btnColor , font = "Verdana 20 bold" , command = self.send_top_angle)
-        send_t_btn.place(x = 1300 , y = 400 , height = 50 , width = 90)
+        send_t_btn.place(x = 500 , y = 300 , height = 50 , width = 90)
         
 
 # Bottom Angle Control
         self.buttom_text = tk.Entry(master , font = "Verdana 20 bold" )
-        self.buttom_text.place( x = 1200 , y = 500  , height = 50 , width = 70 )
+        self.buttom_text.place( x = 400 , y = 400  , height = 50 , width = 70 )
 
         send_buttom_btn = tk.Button(master , text="send" , bg=self.btnBgColor , fg= self.btnColor , font = "Verdana 20 bold" , command = self.send_buttom_angle)
-        send_buttom_btn.place(x = 1300 , y = 500 , height = 50 , width = 90)
+        send_buttom_btn.place(x = 500 , y = 400 , height = 50 , width = 90)
 
 # Base Angle Control
         self.base_text = tk.Entry(master , font = "Verdana 20 bold" )
-        self.base_text.place( x = 1200 , y = 600  , height = 50 , width = 70 )
+        self.base_text.place( x = 400 , y = 500  , height = 50 , width = 70 )
 
         send_base_btn = tk.Button(master , text="send" , bg=self.btnBgColor , fg= self.btnColor , font = "Verdana 20 bold" , command = self.send_base_angle)
-        send_base_btn.place(x = 1300 , y = 600 , height = 50 , width = 90)
+        send_base_btn.place(x = 500 , y = 500 , height = 50 , width = 90)
 
+# Exit Button
         exit_btn = tk.Button(master ,text="Exit", width = 30, bg=self.exitBtnBgColor  , fg=self.exitTextColor,  font = "Verdana 20 bold" ,  command=self.quit)
         exit_btn.place(x = self.screen_x/2-200 , y=self.screen_y-150)
 
+# Serial Status Labels
         self.serialMonitor = tk.Label(master , text = "serial mointor" , bg=self.backgroundColor , fg=self.serialMonitorColor , font="Verdana 15 bold")
-        self.serialMonitor.place(x = self.screen_x - 550 , y = self.screen_y - 360 )
+        self.serialMonitor.place(x = self.screen_x - 550 , y = 550 )
 
         self.serial_info = tk.Label(master , textvariable = self.serialInfo , bg=self.backgroundColor , fg=self.serialInfoColor ,  font = "Verdana 15 " )
-        self.serial_info.place(x = self.screen_x - 550 , y = self.screen_y - 300 )
+        self.serial_info.place(x = self.screen_x - 550 , y = 600 )
         # ###################
 
     def increaseTop(self):
@@ -132,7 +134,7 @@ class ArmGui :
                 print("angle [ {} ] sent to top successfully ".format(str(self.top_angle)))
                 self.current_top_angle.configure(text = str(self.top_angle))
         except :
-            print("connection dosen't established yet ")
+            print("Connection isn't established yet ")
 
     def decreaseTop(self):
         try :
@@ -149,7 +151,7 @@ class ArmGui :
                 print("angle [ {} ] sent to top successfully ".format(str(self.top_angle)))
                 self.current_top_angle.configure(text = str(self.top_angle))
         except :
-            print("connection dosen't established yet ")
+            print("Connection isn't established yet ")
 
     def increaseBottom(self):
         try :
@@ -166,7 +168,7 @@ class ArmGui :
                 print("angle [ 0 ] sent to bottom successfully  ")
                 self.current_bottom_angle.configure(text = str(self.bottom_angle))
         except :
-            print("connection dosen't established yet ")
+            print("Connection isn't established yet ")
 
     def decreaseBottom(self):
         try :
@@ -183,7 +185,7 @@ class ArmGui :
                 print("angle [ 0 ] sent to bottom successfully  ")
                 self.current_bottom_angle.configure(text = str(self.bottom_angle))
         except :
-            print("connection dosen't established yet ")
+            print("Connection isn't established yet ")
 
     def increaseBase(self):
         try :
@@ -200,7 +202,7 @@ class ArmGui :
                 print("angle [ {} ] sent to base successfully ".format(str(self.base_angle)))
                 self.current_base_angle.configure(text=str(self.base_angle))
         except :
-            print("connection dosen't established yet ")
+            print("Connection isn't established yet ")
 
     def decreaseBase(self):
         try :
@@ -217,7 +219,7 @@ class ArmGui :
                 print("angle [ {} ] sent to base successfully ".format(str(self.base_angle)))
                 self.current_base_angle.configure(text=str(self.base_angle))
         except :
-            print("connection dosen't established yet ")
+            print("Connection isn't established yet ")
 
     # ################
 
@@ -235,7 +237,7 @@ class ArmGui :
             elif ( self.ser.isOpen() and self.t_text.get()==''):
                 print("Enter angle Please !")
             else :
-                print("Numeric Values Only Accepted ! ")
+                print("Only Numeric Values Accepted ! ")
 
     def send_buttom_angle(self) :
         try :
@@ -251,7 +253,7 @@ class ArmGui :
             elif ( self.ser.isOpen() and self.buttom_text.get()==''):
                 print("Enter angle Please !")
             else :
-                print("Numeric Values Only Accepted ! ")
+                print("Only Numeric Values Accepted ! ")
 
     def send_base_angle(self) :
         try :
@@ -267,7 +269,7 @@ class ArmGui :
             elif ( self.ser.isOpen() and self.base_text.get()==''):
                 print("Enter angle Please !")
             else :
-                print("Numeric Values Only Accepted ! ")
+                print("Only Numeric Values Accepted ! ")
 
     def start_connection(self):
         ports = list(serial.tools.list_ports.comports())
@@ -311,6 +313,6 @@ class ArmGui :
 
 if __name__=='__main__':
     root = tk.Tk()
-    root.attributes('-fullscreen', True)
+    root.attributes('-fullscreen', False)
     ArmGui(root)
     root.mainloop()
