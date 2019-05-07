@@ -24,10 +24,10 @@ class ArmGui :
         master.title('Arm Control Gui')
         master.geometry(str(self.screen_x)+'x'+str(self.screen_y))
 
-        self.textColor = '#00b3b3'
-        self.backgroundColor = '#000000'
+        self.textColor = '#053e52'
+        self.backgroundColor = '#d3d3d3'
         self.currentLabelColor = '#6600cc'
-        self.anglesColor = '#99ffff'
+        self.anglesColor = '#3F3F3F'
         self.btnColor = '#ffe6cc'
         self.btnBgColor ='#404040'
         self.notActivColor = '#ff0000'
@@ -38,16 +38,16 @@ class ArmGui :
         self.startBtnColor = '#79ff4d'
         self.endBtnBgColor = '#e60000'
         self.endBtnColor = '#ffcccc'
-        self.titleColor = '#ffff66'
+        self.titleColor = '#053e52'
         self.serialInfoColor = '#ffcc00'
         self.serialMonitorColor = '#404040'
         master.configure(background=self.backgroundColor)
 
         name = tk.Label(master , text='Robot Arm Control' , bg=self.backgroundColor , fg=self.titleColor , font = "Verdana 40 bold")
-        name.place(x = self.screen_x/2-150 , y=10)
+        name.place(x = self.screen_x/2-250 , y=10)
 
         start_connection_btn = tk.Button(master , text="Start Connection"  , width = 30, bg=self.startBtnBgColor , fg=self.startBtnColor , font = "Verdana 20 bold" , command = self.start_connection)
-        start_connection_btn.place(x = self.screen_x/2-200 , y=90)
+        start_connection_btn.place(x = self.screen_x/2-500 , y=90)
 
         end_connection_btn = tk.Button(master , text="End Connection " , bg=self.endBtnBgColor , fg=self.endBtnColor , width = 30 , font = "Verdana 20 bold" ,  command = self.end_connection)
         end_connection_btn.place(x = self.screen_x/2-200 , y = 150 )
@@ -87,25 +87,25 @@ class ArmGui :
 
 # Top Angle Control
         self.t_text = tk.Entry(master , font = "Verdana 20 bold" )
-        self.t_text.place( x = 1550 , y = 400  , height = 50 , width = 70 )
+        self.t_text.place( x = 1200 , y = 400  , height = 50 , width = 70 )
 
         send_t_btn = tk.Button(master , text="send" , bg=self.btnBgColor , fg= self.btnColor , font = "Verdana 20 bold" , command = self.send_top_angle)
-        send_t_btn.place(x = 1650 , y = 400 , height = 50 , width = 90)
+        send_t_btn.place(x = 1300 , y = 400 , height = 50 , width = 90)
         
 
 # Bottom Angle Control
         self.buttom_text = tk.Entry(master , font = "Verdana 20 bold" )
-        self.buttom_text.place( x = 1550 , y = 500  , height = 50 , width = 70 )
+        self.buttom_text.place( x = 1200 , y = 500  , height = 50 , width = 70 )
 
         send_buttom_btn = tk.Button(master , text="send" , bg=self.btnBgColor , fg= self.btnColor , font = "Verdana 20 bold" , command = self.send_buttom_angle)
-        send_buttom_btn.place(x = 1650 , y = 500 , height = 50 , width = 90)
+        send_buttom_btn.place(x = 1300 , y = 500 , height = 50 , width = 90)
 
 # Base Angle Control
         self.base_text = tk.Entry(master , font = "Verdana 20 bold" )
-        self.base_text.place( x = 1550 , y = 600  , height = 50 , width = 70 )
+        self.base_text.place( x = 1200 , y = 600  , height = 50 , width = 70 )
 
         send_base_btn = tk.Button(master , text="send" , bg=self.btnBgColor , fg= self.btnColor , font = "Verdana 20 bold" , command = self.send_base_angle)
-        send_base_btn.place(x = 1650 , y = 600 , height = 50 , width = 90)
+        send_base_btn.place(x = 1300 , y = 600 , height = 50 , width = 90)
 
         exit_btn = tk.Button(master ,text="Exit", width = 30, bg=self.exitBtnBgColor  , fg=self.exitTextColor,  font = "Verdana 20 bold" ,  command=self.quit)
         exit_btn.place(x = self.screen_x/2-200 , y=self.screen_y-150)
