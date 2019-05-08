@@ -19,7 +19,7 @@ class ArmGui :
         self.serialInfo.set("Serial Monitoring")
 
         self.screen_x = 1080
-        self.screen_y = 1080
+        self.screen_y = 900
         self.master = master
         master.title('Arm Control Gui')
         master.geometry(str(self.screen_x)+'x'+str(self.screen_y))
@@ -55,9 +55,11 @@ class ArmGui :
         self.connection_status = tk.Label(master , textvariable = self.connectionState ,bg=self.backgroundColor , fg=self.notActivColor , font = "Verdana 20 bold" )
         self.connection_status.place(x = self.screen_x/2 - 100 , y = 220 )
 
+# Current angles Tag
         self.current_angles = tk.Label(master , textvariable = self.currentAngles , bg=self.backgroundColor , fg=self.currentLabelColor ,  font = "Verdana 20 bold" )
-        self.current_angles.place(x = self.screen_x/2 , y = self.screen_y - 400 )
-        # Link 1 Tag
+        self.current_angles.place(x = 50 , y = self.screen_y - 270 )
+
+# Link 1 Tag
         self.current_top_label = tk.Label(master , text = "top angle" , bg=self.backgroundColor , fg=self.textColor ,  font = "Verdana 20 ")
         self.current_top_label.place(x = self.screen_x/2-200 , y = self.screen_y-310)
         self.decrease_top_btn = tk.Button(master , text = "-" , bg=self.btnBgColor , fg= self.btnColor ,  font = "Verdana 20 bold" , command = self.decreaseTop)
@@ -109,14 +111,14 @@ class ArmGui :
 
 # Exit Button
         exit_btn = tk.Button(master ,text="Exit", width = 30, bg=self.exitBtnBgColor  , fg=self.exitTextColor,  font = "Verdana 20 bold" ,  command=self.quit)
-        exit_btn.place(x = self.screen_x/2-200 , y=self.screen_y-150)
+        exit_btn.place(x = self.screen_x/2-250 , y=self.screen_y-150)
 
 # Serial Status Labels
         self.serialMonitor = tk.Label(master , text = "serial mointor" , bg=self.backgroundColor , fg=self.serialMonitorColor , font="Verdana 15 bold")
-        self.serialMonitor.place(x = self.screen_x - 550 , y = 550 )
+        self.serialMonitor.place(x = self.screen_x - 400 , y = 400 )
 
         self.serial_info = tk.Label(master , textvariable = self.serialInfo , bg=self.backgroundColor , fg=self.serialInfoColor ,  font = "Verdana 15 " )
-        self.serial_info.place(x = self.screen_x - 550 , y = 600 )
+        self.serial_info.place(x = self.screen_x - 400 , y = 450 )
         # ###################
 
     def increaseTop(self):
