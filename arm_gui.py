@@ -18,7 +18,7 @@ class ArmGui :
         self.serialInfo = tk.StringVar()
         self.serialInfo.set("Serial Monitoring")
 
-        self.screen_x = 1080
+        self.screen_x = 1000
         self.screen_y = 900
         self.master = master
         master.title('Arm Control Gui')
