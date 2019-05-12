@@ -7,6 +7,7 @@ class ArmGui :
         self.top_angle = 0
         self.bottom_angle = 0
         self.base_angle = 0
+        self.gripper_angle = 0
 
         self.ser = None
         self.connectionState = tk.StringVar()
@@ -58,7 +59,15 @@ class ArmGui :
 # Current angles Tag
         self.current_angles = tk.Label(master , textvariable = self.currentAngles , bg=self.backgroundColor , fg=self.currentLabelColor ,  font = "Verdana 20 bold" )
         self.current_angles.place(x = 50 , y = self.screen_y - 270 )
-
+# Gripper Tag
+        self.current_gripper_label = tk.Label(master , text = "gripper angle" , bg=self.backgroundColor , fg=self.textColor , font = "Verdana 20 ")
+        self.current_gripper_label.place(x = self.screen_x/2-200 , y = self.screen_y -350 )
+        self.decrease_gripper_btn = tk.Button(master , text = "-" , bg=self.btnBgColor , fg= self.btnColor ,  font = "Verdana 20 bold" , command = self.decreaseGripper)
+        self.decrease_gripper_btn.place(x = self.screen_x/2+60 , y = self.screen_y-350 , height = 35 , width = 35 )
+        self.current_gripper_angle = tk.Label(master , text = self.gripper_angle  ,bg=self.backgroundColor , fg=self.anglesColor,font ="Verdana 20 bold")
+        self.current_gripper_angle.place(x = self.screen_x/2+100 , y = self.screen_y-350 )
+        self.increase_gripper_btn = tk.Button(master , text = "+" , bg=self.btnBgColor , fg= self.btnColor , font = "Verdana 20 bold" , command = self.increaseGripper)
+        self.increase_gripper_btn.place(x = self.screen_x/2+165 , y = self.screen_y-350 , height = 35 , width = 35 )
 # Link 1 Tag
         self.current_top_label = tk.Label(master , text = "top angle" , bg=self.backgroundColor , fg=self.textColor ,  font = "Verdana 20 ")
         self.current_top_label.place(x = self.screen_x/2-200 , y = self.screen_y-310)
@@ -120,7 +129,39 @@ class ArmGui :
         self.serial_info = tk.Label(master , textvariable = self.serialInfo , bg=self.backgroundColor , fg=self.serialInfoColor ,  font = "Verdana 15 " )
         self.serial_info.place(x = self.screen_x - 400 , y = 450 )
         # ###################
+    def increaseGripper(self):
+        try :
+            if self.gripper_angle < 180 :
+                self.gripper_angle = self.gripper_angle + 1
+                self.ser.write( ('4/'+str(self.gripper_angle)).encode())
+                self.serialInfo.set( "angle [ {} ] sent to gripper successfully ".format(str(self.gripper_angle)) )
+                print("angle [ {} ] sent to gripper successfully ".format(str(self.gripper_angle)))
+                self.current_gripper_angle.configure(text = str(self.gripper_angle))
+            else :
+                self.gripper_angle = 0
+                self.ser.write( ('4/'+str(self.gripper_angle)).encode())
+                self.serialInfo.set( "angle [ {} ] sent to gripper successfully ".format(str(self.gripper_angle)) )
+                print("angle [ {} ] sent to gripper successfully ".format(str(self.gripper_angle)))
+                self.current_gripper_angle.configure(text = str(self.gripper_angle))
+        except :
+            print("connection dosen't established yet ")
 
+    def decreaseGripper(self):
+        try :
+            if self.gripper_angle > 0 :
+                self.gripper_angle = self.gripper_angle - 1
+                self.ser.write( ('4/'+str(self.gripper_angle)).encode())
+                self.serialInfo.set( "angle [ {} ] sent to gripper successfully ".format(str(self.gripper_angle)) )
+                print("angle [ {} ] sent to gripper successfully ".format(str(self.gripper_angle)))
+                self.current_gripper_angle.configure(text = str(self.gripper_angle))
+            else :
+                self.gripper_angle = 0
+                self.ser.write( ('4/'+str(self.gripper_angle)).encode())
+                self.serialInfo.set( "angle [ {} ] sent to gripper successfully ".format(str(self.gripper_angle)) )
+                print("angle [ {} ] sent to gripper successfully ".format(str(self.gripper_angle)))
+                self.current_gripper_angle.configure(text = str(self.gripper_angle))
+        except :
+            print("connection dosen't established yet ")
     def increaseTop(self):
         try :
             if self.top_angle < 180 :
